@@ -38,3 +38,14 @@ for i in range(len(ary)):
 df = pd.DataFrame(ary, columns=features)
 print(df)
 df.to_csv("TFIDF_Result.csv", index=False)
+
+rows = []
+
+for i in range(len(ary)):
+    for word, score in zip(features, ary[i]):
+        if score > 0:
+            rows.append([i+1, word, score])
+
+df_2= pd.DataFrame(rows, columns=["Document", "Word", "TF-IDF"])
+print(df_2)
+df_2.to_csv("TFIDF_Nonzero.csv", index=False)
